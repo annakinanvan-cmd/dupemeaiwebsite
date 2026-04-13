@@ -498,22 +498,24 @@ export default function PhoneMockup({ prefix = "" }: { prefix?: string }) {
   );
 
   return (
-    <section id={"how-it-works" + prefix} style={{ background: "#080412", position: "relative", zIndex: 2 }}>
+    <section id={"how-it-works" + prefix} className="dm-section" style={{ background: prefix === "-desk" ? "transparent" : "#080412", position: "relative", zIndex: 2, padding: prefix === "-desk" ? "0" : undefined }}>
       <div id={"dm-ov" + prefix} className="dm-ov"/>
 
       {/* ── Section Header ── */}
-      <div className="dm-section-header">
-        <span style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#C084FC", marginBottom: "1.25rem", display: "block" }}>
-          How it works
-        </span>
-        <h2 className="font-serif" style={{ fontSize: "clamp(22px,3.5vw,38px)", fontWeight: 400, lineHeight: 1.1, marginBottom: 0 }}>
-          Watch her work.<br />
-          <em className="text-gradient font-serif" style={{ fontStyle: "italic" }}>While you sleep.</em>
-        </h2>
-      </div>
+      {prefix !== "-desk" && (
+        <div className="dm-section-header">
+          <span className="reveal reveal-delay-1" style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#C084FC", marginBottom: "1.25rem", display: "block" }}>
+            How it works
+          </span>
+          <h2 className="font-serif reveal reveal-delay-2" style={{ fontSize: "clamp(28px,4.5vw,40px)", fontWeight: 400, lineHeight: 1.1, marginBottom: 0 }}>
+            Watch her work.<br />
+            <em className="text-gradient font-serif" style={{ fontStyle: "italic" }}>While you sleep.</em>
+          </h2>
+        </div>
+      )}
 
       {/* ── Dot grid background ── */}
-      <div className="dm-dot-grid" aria-hidden="true"/>
+      {prefix !== "-desk" && <div className="dm-dot-grid" aria-hidden="true"/>}
 
       {/* ── Phone anchor ── */}
       <div id={"demo" + prefix} style={{ scrollMarginTop: "90px" }}/>
