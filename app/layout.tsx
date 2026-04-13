@@ -16,9 +16,14 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "DupeMe AI — AI Assistant for Creators | Automate Your DMs & Client Management",
+  title: "DupeMe AI | The Premium AI Assistant for Creators",
   description:
     "Your AI dupe — always on, even when you're not. DupeMe AI manages your DMs, screens clients, and keeps fans coming back. Built for creators, by creators.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
