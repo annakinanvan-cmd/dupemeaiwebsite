@@ -75,7 +75,7 @@ export default function PhoneMockup({ prefix = "" }: { prefix?: string }) {
     if (mounted.current) return;
     mounted.current = true;
     const sl = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
-    const getEl = (id: string) => getEl(id + prefix);
+    const getEl = (id: string) => document.getElementById(id + prefix);
     const ov = getEl("dm-ov")!;
 
     // ── Reset all scenes to initial state for a clean loop ──
@@ -355,7 +355,7 @@ export default function PhoneMockup({ prefix = "" }: { prefix?: string }) {
     const watchTarget = getEl("demo") || getEl("dm-ov");
     if (watchTarget) observer.observe(watchTarget);
 
-  }, []);
+  }, [prefix]);
 
   /* ── Reusable sub-components ── */
 
