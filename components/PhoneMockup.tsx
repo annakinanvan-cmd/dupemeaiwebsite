@@ -504,10 +504,10 @@ export default function PhoneMockup({ prefix = "" }: { prefix?: string }) {
       {/* ── Section Header ── */}
       {prefix !== "-desk" && (
         <div className="dm-section-header">
-          <span className="reveal reveal-delay-1" style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#C084FC", marginBottom: "1.25rem", display: "block" }}>
+          <span style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#C084FC", marginBottom: "1.25rem", display: "block" }}>
             How it works
           </span>
-          <h2 className="font-serif reveal reveal-delay-2" style={{ fontSize: "clamp(28px,4.5vw,40px)", fontWeight: 400, lineHeight: 1.1, marginBottom: 0 }}>
+          <h2 className="font-serif" style={{ fontSize: "clamp(22px,3.5vw,38px)", fontWeight: 400, lineHeight: 1.1, marginBottom: 0 }}>
             Watch her work.<br />
             <em className="text-gradient font-serif" style={{ fontStyle: "italic" }}>While you sleep.</em>
           </h2>
