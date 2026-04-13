@@ -9,6 +9,7 @@ export default function ContactModal() {
   const [phone, setPhone] = useState("");
   const [method, setMethod] = useState("Email");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -36,10 +37,15 @@ export default function ContactModal() {
           preferredContact: method
         }),
       });
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsOpen(false);
+        setTimeout(() => { setIsSuccess(false); setName(""); setEmail(""); setPhone(""); }, 300);
+      }, 3500);
     } catch(err) {
       console.error(err);
+      if (btn) btn.innerText = "Let's talk 🤍";
     }
-    setIsOpen(false);
   };
 
   const inputStyle = {
@@ -100,11 +106,27 @@ export default function ContactModal() {
           ✕
         </button>
 
-        <h2
-          className="font-serif text-gradient"
-          style={{ fontSize: 32, marginBottom: ".25rem" }}
-        >
-          Let&apos;s get you set up.
+        {isSuccess ? (
+          <div style={{ padding: "3rem 1rem", textAlign: "center", animation: "slideUpFade .5s ease-out forwards" }}>
+            <div style={{ width: 64, height: 64, margin: "0 auto 1.5rem", borderRadius: "50%", background: "rgba(192,132,252,0.1)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 30px rgba(192,132,252,0.3)" }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                <path d="M20 6L9 17L4 12" stroke="#c084fc" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ strokeDasharray: 40, strokeDashoffset: 40, animation: "drawCheck 0.6s 0.2s ease forwards" }}/>
+              </svg>
+            </div>
+            <h2 className="font-serif text-gradient" style={{ fontSize: 28, marginBottom: "0.5rem" }}>
+              Received. 🤍
+            </h2>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,.5)", lineHeight: 1.5 }}>
+              Thanks, {name ? name.split(" ")[0] : "there"}. We&apos;ll be in touch with you shortly.
+            </p>
+          </div>
+        ) : (
+          <>
+            <h2
+              className="font-serif text-gradient"
+              style={{ fontSize: 32, marginBottom: ".25rem" }}
+            >
+              Let&apos;s get you set up.
         </h2>
         <p
           style={{
@@ -302,12 +324,21 @@ export default function ContactModal() {
             inclusive and always judgment-free.
           </p>
         </div>
+        </>
+        )}
 
         <style>
           {`
             @keyframes fadeInModal {
               from { opacity: 0; transform: scale(.98); }
               to { opacity: 1; transform: scale(1); }
+            }
+            @keyframes slideUpFade {
+              from { opacity: 0; transform: translateY(10px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes drawCheck {
+              to { stroke-dashoffset: 0; }
             }
           `}
         </style>
