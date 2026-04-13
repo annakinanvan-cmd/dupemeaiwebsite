@@ -18,11 +18,27 @@ export default function ContactModal() {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`New Enquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nPreferred contact: ${method}`);
-    window.location.href = `mailto:dupemeai@gmail.com?subject=${subject}&body=${body}`;
+    const btn = document.querySelector('button[type="submit"]') as HTMLButtonElement;
+    if (btn) btn.innerText = "Sending...";
+    try {
+      await fetch("https://formcarry.com/s/0zENX_GD5mR", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: phone || 'Not provided',
+          preferredContact: method
+        }),
+      });
+    } catch(err) {
+      console.error(err);
+    }
     setIsOpen(false);
   };
 
