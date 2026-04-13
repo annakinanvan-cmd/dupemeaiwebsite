@@ -153,7 +153,7 @@ export default function PhoneMockup() {
       return new Promise<void>((res) => {
         const wrap = document.createElement("div");
         wrap.innerHTML = `<div class="dm-sg-row ${side}"><div class="dm-sg-bub ${side}">${html}</div></div><div class="dm-sg-row ${side}"><div class="dm-sg-time">${time}</div></div>`;
-        [...wrap.children].forEach(ch => c.appendChild(ch));
+        Array.from(wrap.children).forEach(ch => c.appendChild(ch));
         c.scrollTop = c.scrollHeight;
         requestAnimationFrame(() => requestAnimationFrame(() => {
           c.querySelectorAll(".dm-sg-bub:not(.pop)").forEach(b => b.classList.add("pop"));
