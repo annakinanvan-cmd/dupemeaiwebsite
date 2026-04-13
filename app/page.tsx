@@ -41,9 +41,7 @@ export default function Home() {
         <Marquee />
         <Problem />
         <Solution />
-        <div className="md:hidden">
-          <PhoneMockup prefix="-mob" />
-        </div>
+        <PhoneMockup />
         <SocialProof />
         <Platforms />
         <Comparison />
