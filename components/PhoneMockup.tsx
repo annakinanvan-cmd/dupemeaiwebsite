@@ -67,7 +67,7 @@ const Icon = {
   ),
 };
 
-export default function PhoneMockup() {
+export default function PhoneMockup({ prefix = "" }: { prefix?: string }) {
   const mounted = useRef(false);
   const loopRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -75,30 +75,31 @@ export default function PhoneMockup() {
     if (mounted.current) return;
     mounted.current = true;
     const sl = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
-    const ov = document.getElementById("dm-ov")!;
+    const getEl = (id: string) => getEl(id + prefix);
+    const ov = getEl("dm-ov")!;
 
     // ── Reset all scenes to initial state for a clean loop ──
     function resetDemo() {
       // Clear all dynamically injected messages
       ["dm-s1m","dm-s2m","dm-s3m","dm-s4m","dm-s5m","dm-s6m"].forEach(id => {
-        const el = document.getElementById(id);
+        const el = getEl(id);
         if (el) el.innerHTML = "";
       });
       // Restore initial WA content
-      const s1m = document.getElementById("dm-s1m");
+      const s1m = getEl("dm-s1m");
       if (s1m) s1m.innerHTML = `<div class="dm-wa-enc">🔒 Messages and calls are end-to-end encrypted. Only people in this chat can read or listen to them.</div><div class="dm-wa-datesep">Today</div>`;
-      const s2m = document.getElementById("dm-s2m"); if (s2m) s2m.innerHTML = `<div class="dm-wa-datesep">Today</div>`;
-      const s3m = document.getElementById("dm-s3m"); if (s3m) s3m.innerHTML = `<div class="dm-wa-datesep">Today</div>`;
+      const s2m = getEl("dm-s2m"); if (s2m) s2m.innerHTML = `<div class="dm-wa-datesep">Today</div>`;
+      const s3m = getEl("dm-s3m"); if (s3m) s3m.innerHTML = `<div class="dm-wa-datesep">Today</div>`;
       // Hide closing, show sc1
-      const closing = document.getElementById("dm-closing")!;
+      const closing = getEl("dm-closing")!;
       closing.style.display = "none";
-      ["dm-clEy","dm-clTg","dm-clSb","dm-clLg"].forEach(id => document.getElementById(id)?.classList.remove("v"));
-      ["dm-stc1","dm-stc2","dm-stc3","dm-stc4"].forEach(id => document.getElementById(id)?.classList.remove("v"));
-      ["dm-stn1","dm-stn2","dm-stn4"].forEach(id => { const el = document.getElementById(id); if(el) el.textContent="0"; });
-      const stn3 = document.getElementById("dm-stn3"); if(stn3) stn3.textContent="$0";
+      ["dm-clEy","dm-clTg","dm-clSb","dm-clLg"].forEach(id => getEl(id)?.classList.remove("v"));
+      ["dm-stc1","dm-stc2","dm-stc3","dm-stc4"].forEach(id => getEl(id)?.classList.remove("v"));
+      ["dm-stn1","dm-stn2","dm-stn4"].forEach(id => { const el = getEl(id); if(el) el.textContent="0"; });
+      const stn3 = getEl("dm-stn3"); if(stn3) stn3.textContent="$0";
       // Show sc1, hide all others
       ["dm-sc1","dm-sc2","dm-sc3","dm-sc4","dm-sc5","dm-sc6"].forEach((id,i) => {
-        const el = document.getElementById(id);
+        const el = getEl(id);
         if(el) el.style.display = i===0 ? "flex" : "none";
       });
     };
@@ -171,20 +172,20 @@ export default function PhoneMockup() {
     }
     async function go(from: string, to: string, fn: () => void) {
       ov.classList.add("on"); await sl(500);
-      (document.getElementById(from) as HTMLElement).style.display = "none";
-      const nx = document.getElementById(to)!; nx.style.display = "flex";
+      (getEl(from) as HTMLElement).style.display = "none";
+      const nx = getEl(to)!; nx.style.display = "flex";
       await sl(50); ov.classList.remove("on"); await sl(600); fn();
     }
     async function goClose(from: string) {
       ov.classList.add("on"); await sl(500);
-      (document.getElementById(from) as HTMLElement).style.display = "none";
-      document.getElementById("dm-closing")!.style.display = "flex";
+      (getEl(from) as HTMLElement).style.display = "none";
+      getEl("dm-closing")!.style.display = "flex";
       await sl(50); ov.classList.remove("on"); await sl(600); runClose();
     }
 
     /* ── Scenes ── */
     async function s1() {
-      const c = document.getElementById("dm-s1m")!; await sl(400);
+      const c = getEl("dm-s1m")!; await sl(400);
       await wa(c, "in", "Hey, I'd like to book an incall for Saturday. Is 8pm available?", "2:14");
       await sl(1000); const t1 = waTyping(c); await sl(2000); t1.remove();
       await wa(c, "out", "Hey babe 🌹 So glad you reached out! 8pm is taken but I have 7pm free — does that work? My rate is $450/hr 💋", "2:16", true);
@@ -202,7 +203,7 @@ export default function PhoneMockup() {
     }
 
     async function s2() {
-      const c = document.getElementById("dm-s2m")!; await sl(400);
+      const c = getEl("dm-s2m")!; await sl(400);
       await wa(c, "in", "Hi! I'm interested in a video call session — do you do those?", "2:31");
       await sl(900); const t1 = waTyping(c); await sl(1700); t1.remove();
       await wa(c, "out", "Hey! Yes I do 📱✨ Video sessions are $250 for 30 mins. I have Saturday 4pm free — does that work?", "2:33", true);
@@ -220,7 +221,7 @@ export default function PhoneMockup() {
     }
 
     async function s3() {
-      const c = document.getElementById("dm-s3m")!; await sl(400);
+      const c = getEl("dm-s3m")!; await sl(400);
       await wa(c, "in", "hey u available tonight? incall", "3:02");
       await sl(900); const t1 = waTyping(c); await sl(1700); t1.remove();
       await wa(c, "out", "Hi! I do have some availability 🌹 For all incalls I need a quick screening first — full name, age, and a LinkedIn or work email. Keeps things safe for both of us 💛", "3:03", true);
@@ -236,7 +237,7 @@ export default function PhoneMockup() {
     }
 
     async function s4() {
-      const c = document.getElementById("dm-s4m")!; await sl(400);
+      const c = getEl("dm-s4m")!; await sl(400);
       // Story reply card
       const storyRow = document.createElement("div");
       storyRow.className = "dm-ig-row in dm-story-row";
@@ -265,7 +266,7 @@ export default function PhoneMockup() {
     }
 
     async function s5() {
-      const c = document.getElementById("dm-s5m")!; await sl(400);
+      const c = getEl("dm-s5m")!; await sl(400);
       
       const avTrystBg = "#e53935";
       const avTrystText = `<svg width="22" height="22" viewBox="0 0 24 24"><path fill="#fff" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
@@ -301,7 +302,7 @@ export default function PhoneMockup() {
     }
 
     async function s6() {
-      const c = document.getElementById("dm-s6m")!; await sl(700);
+      const c = getEl("dm-s6m")!; await sl(700);
       await sg(c, "in", "<strong>Good morning ☀️</strong><br><br>Here's your overnight summary:", "11:03 AM");
       await sl(1200);
       await sg(c, "in", `<div class="dm-sg-item">📅 2 confirmed incall bookings today</div><div class="dm-sg-item">📱 1 video session — Sat 4pm</div><div class="dm-sg-item">💰 $400 in deposits collected overnight</div>`, "11:03 AM");
@@ -315,7 +316,7 @@ export default function PhoneMockup() {
     }
 
     function runClose() {
-      setTimeout(() => document.getElementById("dm-clEy")!.classList.add("v"), 200);
+      setTimeout(() => getEl("dm-clEy")!.classList.add("v"), 200);
       [
         { c: "dm-stc1", n: "dm-stn1", t: 47, p: "", d: 400 },
         { c: "dm-stc2", n: "dm-stn2", t: 3,  p: "", d: 600 },
@@ -323,14 +324,14 @@ export default function PhoneMockup() {
         { c: "dm-stc4", n: "dm-stn4", t: 7,  p: "", d: 1000 },
       ].forEach(({ c, n, t, p, d }) => {
         setTimeout(() => {
-          document.getElementById(c)!.classList.add("v");
-          const el = document.getElementById(n)!; let v = 0;
+          getEl(c)!.classList.add("v");
+          const el = getEl(n)!; let v = 0;
           const iv = setInterval(() => { v = Math.min(v + Math.ceil(t / 28), t); el.textContent = p + v; if (v >= t) clearInterval(iv); }, 38);
         }, d);
       });
-      setTimeout(() => document.getElementById("dm-clTg")!.classList.add("v"), 1800);
-      setTimeout(() => document.getElementById("dm-clSb")!.classList.add("v"), 2100);
-      setTimeout(() => document.getElementById("dm-clLg")!.classList.add("v"), 2400);
+      setTimeout(() => getEl("dm-clTg")!.classList.add("v"), 1800);
+      setTimeout(() => getEl("dm-clSb")!.classList.add("v"), 2100);
+      setTimeout(() => getEl("dm-clLg")!.classList.add("v"), 2400);
       // ── Loop: restart after 5.5s on closing screen ──
       setTimeout(async () => {
         ov.classList.add("on");
@@ -351,7 +352,7 @@ export default function PhoneMockup() {
       }
     }, { threshold: 0.2 });
     
-    const watchTarget = document.getElementById("demo") || document.getElementById("dm-ov");
+    const watchTarget = getEl("demo") || getEl("dm-ov");
     if (watchTarget) observer.observe(watchTarget);
 
   }, []);
@@ -497,8 +498,8 @@ export default function PhoneMockup() {
   );
 
   return (
-    <section id="how-it-works" style={{ background: "#080412", position: "relative", zIndex: 2 }}>
-      <div id="dm-ov" className="dm-ov"/>
+    <section id={"how-it-works" + prefix} style={{ background: "#080412", position: "relative", zIndex: 2 }}>
+      <div id={"dm-ov" + prefix} className="dm-ov"/>
 
       {/* ── Section Header ── */}
       <div className="dm-section-header">
@@ -515,10 +516,10 @@ export default function PhoneMockup() {
       <div className="dm-dot-grid" aria-hidden="true"/>
 
       {/* ── Phone anchor ── */}
-      <div id="demo" style={{ scrollMarginTop: "90px" }}/>
+      <div id={"demo" + prefix} style={{ scrollMarginTop: "90px" }}/>
 
       {/* ── Scene 1: WhatsApp Booking ── */}
-      <SceneWrap id="dm-sc1" pip={0} platform="WhatsApp" PlatIcon={Icon.WA} platformColor="#25d366"
+      <SceneWrap id={"dm-sc1" + prefix} pip={0} platform="WhatsApp" PlatIcon={Icon.WA} platformColor="#25d366"
         heading="New client texted." headingEm="Booked & deposited."
         sub="2am. You're asleep. Sophia handles the booking and collects the deposit — automatically.">
         <Phone >
@@ -526,7 +527,7 @@ export default function PhoneMockup() {
             <IOSBar time="2:14" light/>
             <WaHeader name="Luca M." status="online" avBg="#1565c0" avText="LM"/>
             <div className="dm-wa-bg">
-              <div className="dm-wa-msgs" id="dm-s1m">
+              <div className="dm-wa-msgs" id={"dm-s1m" + prefix}>
                 <div className="dm-wa-enc">🔒 Messages and calls are end-to-end encrypted. Only people in this chat can read or listen to them.</div>
                 <div className="dm-wa-datesep">Today</div>
               </div>
@@ -537,7 +538,7 @@ export default function PhoneMockup() {
       </SceneWrap>
 
       {/* ── Scene 2: Video Session ── */}
-      <SceneWrap id="dm-sc2" pip={1} platform="WhatsApp" PlatIcon={Icon.WA} platformColor="#25d366"
+      <SceneWrap id={"dm-sc2" + prefix} pip={1} platform="WhatsApp" PlatIcon={Icon.WA} platformColor="#25d366"
         heading="Video session." headingEm="$250. Booked."
         sub="Different request. Same flawless response. Saturday 4pm, locked in." hidden>
         <Phone>
@@ -545,7 +546,7 @@ export default function PhoneMockup() {
             <IOSBar time="2:31" light/>
             <WaHeader name="Daniel K." status="online" avBg="#2e7d32" avText="DK"/>
             <div className="dm-wa-bg">
-              <div className="dm-wa-msgs" id="dm-s2m">
+              <div className="dm-wa-msgs" id={"dm-s2m" + prefix}>
                 <div className="dm-wa-datesep">Today</div>
               </div>
             </div>
@@ -555,7 +556,7 @@ export default function PhoneMockup() {
       </SceneWrap>
 
       {/* ── Scene 3: Time Waster ── */}
-      <SceneWrap id="dm-sc3" pip={2} platform="WhatsApp — Screened" PlatIcon={Icon.WA} platformColor="#ff4444"
+      <SceneWrap id={"dm-sc3" + prefix} pip={2} platform="WhatsApp — Screened" PlatIcon={Icon.WA} platformColor="#ff4444"
         heading="Time waster blocked." headingEm="No headache."
         sub="No ID? No appointment. Sophia routes time-wasters away. Zero headache." hidden>
         <Phone>
@@ -563,7 +564,7 @@ export default function PhoneMockup() {
             <IOSBar time="3:02" light/>
             <WaHeader name="Unknown" status="+1 (514) 000-****" avBg="#555" avText="??"/>
             <div className="dm-wa-bg">
-              <div className="dm-wa-msgs" id="dm-s3m">
+              <div className="dm-wa-msgs" id={"dm-s3m" + prefix}>
                 <div className="dm-wa-datesep">Today</div>
               </div>
             </div>
@@ -573,7 +574,7 @@ export default function PhoneMockup() {
       </SceneWrap>
 
       {/* ── Scene 4: Instagram ── */}
-      <SceneWrap id="dm-sc4" pip={3} platform="Instagram" PlatIcon={Icon.IG} platformColor="#e1306c"
+      <SceneWrap id={"dm-sc4" + prefix} pip={3} platform="Instagram" PlatIcon={Icon.IG} platformColor="#e1306c"
         heading="Story reply." headingEm="Funneled."
         sub="Sophia acts on every comment and reply, funneling fans exactly where they belong." hidden>
         <Phone>
@@ -595,7 +596,7 @@ export default function PhoneMockup() {
                 <svg width="24" height="24" viewBox="0 0 24 24"><path d="M6.62 10.79a15 15 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" fill="#fff"/></svg>
               </div>
             </div>
-            <div className="dm-ig-msgs" id="dm-s4m"/>
+            <div className="dm-ig-msgs" id={"dm-s4m" + prefix}/>
             <div className="dm-ig-footer">
               <div className="dm-ig-fav"><Image src="/sophia-avatar.png" alt="me" fill style={{ objectFit: "cover", borderRadius: "50%" }}/>
               </div>
@@ -611,7 +612,7 @@ export default function PhoneMockup() {
       </SceneWrap>
 
       {/* ── Scene 5: Gmail ── */}
-      <SceneWrap id="dm-sc5" pip={4} platform="Gmail" PlatIcon={Icon.Gmail} platformColor="#4285f4"
+      <SceneWrap id={"dm-sc5" + prefix} pip={4} platform="Gmail" PlatIcon={Icon.Gmail} platformColor="#4285f4"
         heading="Email inquiry." headingEm="Screened. Confirmed."
         sub="A dinner invitation off Tryst. Sophia verifies identity and collects the deposit to secure your time." hidden>
         <Phone>
@@ -629,13 +630,13 @@ export default function PhoneMockup() {
               <span className="dm-gm-thread-title">Invitation to Dinnerdate Next Friday</span>
               <svg width="20" height="20" viewBox="0 0 24 24" style={{flexShrink:0}}><circle cx="12" cy="5" r="2" fill="#9aa0a6"/><circle cx="12" cy="12" r="2" fill="#9aa0a6"/><circle cx="12" cy="19" r="2" fill="#9aa0a6"/></svg>
             </div>
-            <div className="dm-gm-msgs" id="dm-s5m"/>
+            <div className="dm-gm-msgs" id={"dm-s5m" + prefix}/>
           </div>
         </Phone>
       </SceneWrap>
 
       {/* ── Scene 6: Signal ── */}
-      <SceneWrap id="dm-sc6" pip={5} platform="Signal — Morning Briefing" PlatIcon={Icon.Signal} platformColor="#3a76f0"
+      <SceneWrap id={"dm-sc6" + prefix} pip={5} platform="Signal — Morning Briefing" PlatIcon={Icon.Signal} platformColor="#3a76f0"
         heading="11am. You wake up." headingEm="It's already done."
         sub="DupeMe AI reports back. Every booking, every deposit, every redirect — while you slept." hidden>
         <Phone>
@@ -653,7 +654,7 @@ export default function PhoneMockup() {
                 <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2" fill="#3a76f0"/><circle cx="12" cy="12" r="2" fill="#3a76f0"/><circle cx="12" cy="19" r="2" fill="#3a76f0"/></svg>
               </div>
             </div>
-            <div className="dm-sg-msgs" id="dm-s6m"/>
+            <div className="dm-sg-msgs" id={"dm-s6m" + prefix}/>
             <div className="dm-sg-input">
               <div className="dm-sg-inp">Message</div>
               <div className="dm-sg-send">
@@ -665,18 +666,18 @@ export default function PhoneMockup() {
       </SceneWrap>
 
       {/* ── Closing ── */}
-      <div id="dm-closing" className="dm-closing" style={{ display: "none" }}>
+      <div id={"dm-closing" + prefix} className="dm-closing" style={{ display: "none" }}>
         <div className="dm-closing-glow"/>
-        <p className="dm-cl-ey" id="dm-clEy">While you slept</p>
+        <p className="dm-cl-ey" id={"dm-clEy" + prefix}>While you slept</p>
         <div className="dm-stats-grid">
-          <div className="dm-stat" id="dm-stc1"><div className="dm-stat-n" id="dm-stn1">0</div><div className="dm-stat-l">messages<br/>answered</div></div>
-          <div className="dm-stat" id="dm-stc2"><div className="dm-stat-n" id="dm-stn2">0</div><div className="dm-stat-l">bookings<br/>confirmed</div></div>
-          <div className="dm-stat" id="dm-stc3"><div className="dm-stat-n" id="dm-stn3">$0</div><div className="dm-stat-l">deposits<br/>collected</div></div>
-          <div className="dm-stat" id="dm-stc4"><div className="dm-stat-n" id="dm-stn4">0</div><div className="dm-stat-l">time-wasters<br/>filtered</div></div>
+          <div className="dm-stat" id={"dm-stc1" + prefix}><div className="dm-stat-n" id={"dm-stn1" + prefix}>0</div><div className="dm-stat-l">messages<br/>answered</div></div>
+          <div className="dm-stat" id={"dm-stc2" + prefix}><div className="dm-stat-n" id={"dm-stn2" + prefix}>0</div><div className="dm-stat-l">bookings<br/>confirmed</div></div>
+          <div className="dm-stat" id={"dm-stc3" + prefix}><div className="dm-stat-n" id={"dm-stn3" + prefix}>$0</div><div className="dm-stat-l">deposits<br/>collected</div></div>
+          <div className="dm-stat" id={"dm-stc4" + prefix}><div className="dm-stat-n" id={"dm-stn4" + prefix}>0</div><div className="dm-stat-l">time-wasters<br/>filtered</div></div>
         </div>
-        <h2 className="dm-cl-tag" id="dm-clTg">All the income.<br/><em>None of the exhaustion.</em></h2>
-        <p className="dm-cl-sub" id="dm-clSb">DupeMe AI is your dupe — always on, always in your voice, always working. Even when you&apos;re not.</p>
-        <div className="dm-cl-logo" id="dm-clLg" style={{ justifyContent: "center" }}>
+        <h2 className="dm-cl-tag" id={"dm-clTg" + prefix}>All the income.<br/><em>None of the exhaustion.</em></h2>
+        <p className="dm-cl-sub" id={"dm-clSb" + prefix}>DupeMe AI is your dupe — always on, always in your voice, always working. Even when you&apos;re not.</p>
+        <div className="dm-cl-logo" id={"dm-clLg" + prefix} style={{ justifyContent: "center" }}>
           <img src="/icon.svg?v=4" alt="" aria-hidden="true" style={{ height: "2.1rem", width: "auto", flexShrink: 0, marginRight: "5px" }} />
           <div style={{ display: "flex", alignItems: "baseline", lineHeight: 1, fontSize: "1.85rem", fontWeight: 700, letterSpacing: "-0.01em", fontFamily: "var(--font-playfair)" }}>
             <span style={{ color: "#ffffff" }}>Dupe</span>

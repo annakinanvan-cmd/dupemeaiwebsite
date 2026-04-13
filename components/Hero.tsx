@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import PhoneMockup from "./PhoneMockup";
 
 function useCountUp(to: number, duration = 1100, delay = 500) {
   const [val, setVal] = useState(0);
@@ -130,6 +131,11 @@ export default function Hero() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+      <div className="hero-right hidden md:flex items-center justify-center" style={{ paddingBottom: "2rem" }}>
+        <div style={{ transform: "scale(0.9)", transformOrigin: "top right" }}>
+          <PhoneMockup prefix="-desk" />
         </div>
       </div>
     </section>
