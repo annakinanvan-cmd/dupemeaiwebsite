@@ -34,11 +34,21 @@ export function useScrollReveal() {
     // Handle programmatic scrolling (nav menu clicks)
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a");
-      if (target && target.getAttribute("href")?.startsWith("#")) {
-        // Fast sweep right after the click scroll happens
-        setTimeout(sweepElements, 50);
-        setTimeout(sweepElements, 300);
-        setTimeout(sweepElements, 600); // multiple checks as smooth scroll moves
+      if (!target) return;
+      const href = target.getAttribute("href");
+      if (href && (href.startsWith("#") || href.startsWith("/#"))) {
+        const id = href.replace(/^\/?#/, "");
+        const el = document.getElementById(id);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: "smooth" });
+          history.pushState(null, "", href);
+          // Fast sweep right after the click scroll happens
+          setTimeout(sweepElements, 50);
+          setTimeout(sweepElements, 300);
+          setTimeout(sweepElements, 600); 
+          setTimeout(sweepElements, 900); // multiple checks as smooth scroll moves
+        }
       }
     };
     document.addEventListener("click", handleAnchorClick);

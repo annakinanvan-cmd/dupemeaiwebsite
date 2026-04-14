@@ -48,6 +48,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          if (typeof window !== 'undefined' && 'scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+          }
+        ` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </head>
       <body>{children}</body>
