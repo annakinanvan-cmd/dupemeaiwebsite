@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import BackgroundGradients from "@/components/BackgroundGradients";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollRevealInit from "@/components/ScrollRevealInit";
