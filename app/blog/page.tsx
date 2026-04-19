@@ -3,7 +3,8 @@ import BackgroundGradients from "@/components/BackgroundGradients";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollRevealInit from "@/components/ScrollRevealInit";
 import Navbar from "@/components/Navbar";
-import { CTA, Footer } from "@/components/CTAFooter";
+import { Footer } from "@/components/CTAFooter";
+import BlogCTA from "@/components/BlogCTA";
 import ContactModal from "@/components/ContactModal";
 import BackToTop from "@/components/BackToTop";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -94,7 +95,7 @@ export default function BlogIndex() {
         </div>
       </main>
 
-      <CTA />
+      <BlogCTA />
       <Footer />
       <ContactModal />
       <BackToTop />
