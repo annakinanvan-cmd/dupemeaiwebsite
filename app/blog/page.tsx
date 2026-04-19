@@ -95,7 +95,6 @@ export default function BlogIndex() {
         </div>
       </main>
 
-      <BlogCTA />
       <Footer />
       <ContactModal />
       <BackToTop />

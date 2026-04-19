@@ -19,15 +19,15 @@ export default function BlogCTA() {
       >
         <a 
           href="/#demo" 
-          className="btn-primary" 
-          style={{ textDecoration: "none", minWidth: "200px" }}
+          className="btn-ghost" 
+          style={{ textDecoration: "none", minWidth: "200px", boxSizing: "border-box" }}
         >
           See How It Works
         </a>
         <button 
-          className="btn-ghost" 
+          className="btn-primary" 
           onClick={() => window.dispatchEvent(new CustomEvent("openContactModal"))}
-          style={{ minWidth: "200px" }}
+          style={{ minWidth: "200px", boxSizing: "border-box" }}
         >
           Get In Touch
         </button>

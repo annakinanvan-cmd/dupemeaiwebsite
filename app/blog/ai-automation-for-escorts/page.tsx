@@ -114,34 +114,10 @@ export default function BlogPost() {
               The girls who move on this now are the ones who are going to be ahead while everyone else is still doing it manually.
             </p>
 
-            <div style={{ 
-              display: "flex", 
-              flexDirection: "column", 
-              alignItems: "center", 
-              gap: "1.5rem",
-              padding: "3rem",
-              background: "rgba(192, 132, 252, 0.05)",
-              borderRadius: "16px",
-              border: "1px solid rgba(192, 132, 252, 0.2)",
-              textAlign: "center"
-            }}>
-              <p style={{ margin: 0, fontWeight: 500, color: "#fff" }}>Ready to get your time back?</p>
-              <a 
-                href="/#demo"
-                className="btn-primary" 
-                style={{ textDecoration: "none" }}
-              >
-                Get in touch at dupemeai.com →
-              </a>
-              <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.5)", margin: 0 }}>
-                Built by providers, for providers. No commission. Ever.
-              </p>
-            </div>
+            <BlogCTA />
           </div>
         </article>
       </main>
-
-      <BlogCTA />
       <Footer />
       <ContactModal />
       <BackToTop />
