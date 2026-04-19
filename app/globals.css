@@ -547,11 +547,7 @@ body {
     display: none;
   }
   .nav-cta-btn {
-    display: inline-flex;
-    margin-right: 1.5rem;
-    font-size: 11px;
-    padding: 8px 16px;
-    min-height: 44px; /* Minimum mobile touch target */
+    display: none !important;
   }
   .nav-controls {
     display: flex;
