@@ -44,6 +44,7 @@ export default function Navbar() {
     { label: "Pricing", href: "/#pricing" },
     { label: "Agencies", href: "/agencies" },
     { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog" },
   ];
 
   return (
