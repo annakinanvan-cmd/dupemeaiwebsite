@@ -61,6 +61,7 @@ export default function FAQ() {
         color: "#fff",
         position: "relative",
         zIndex: 2,
+        borderTop: ".5px solid rgba(192,132,252,0.12)",
       }}
     >
       <style dangerouslySetInnerHTML={{__html: `

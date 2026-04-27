@@ -589,7 +589,7 @@ body {
 }
 
 .accordion-section-pad {
-  padding: 2.5rem 2rem;
+  padding: 1.5rem 2rem;
 }
 
 @media (max-width: 768px) {
@@ -600,7 +600,10 @@ body {
     padding: 1rem 1.5rem;
   }
   #pricing {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+  }
+  #faq {
+    padding-top: 1rem;
   }
 }
 
@@ -933,8 +936,34 @@ body {
 .dm-ov { position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;z-index:9999;transition:opacity .5s ease; }
 .dm-ov.on { opacity:1; }
 
+/* Mobile overrides for PhoneMockup */
+@media (max-width: 768px) {
+  .dm-section-header {
+    padding: 40px 1.5rem 0 !important;
+  }
+  .dm-section-header h2 {
+    font-size: clamp(22px, 5vw, 32px) !important;
+  }
+  .dm-inner {
+    padding: 1.5rem 1rem 3rem !important;
+  }
+  .dm-scene-h2 {
+    font-size: clamp(22px, 5vw, 32px) !important;
+  }
+  .dm-closing {
+    padding: 60px 1.5rem !important;
+  }
+  .dm-stats-grid {
+    gap: 10px;
+  }
+}
+
 /* ── Section header ── */
-.dm-section-header { padding:80px 5rem 0;position:relative;z-index:3; }
+.dm-section-header { 
+  padding: 60px 2rem 0; 
+  position: relative; 
+  z-index: 3; 
+}
 
 /* ── Dot grid background ── */
 .dm-dot-grid { position:absolute;inset:0;pointer-events:none;z-index:0;
@@ -947,7 +976,7 @@ body {
 /* Scene layout */
 .dm-scene { display:flex;width:100%;min-height:100vh;background:#080412;position:relative;overflow:hidden; }
 .dm-scene-glow { position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(244,114,182,.07) 0%,rgba(192,132,252,.06) 40%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0; }
-.dm-inner { display:flex;align-items:center;justify-content:center;padding:2rem 5rem 5rem;width:100%;max-width:600px;margin:0 auto;position:relative;z-index:2; }
+.dm-inner { display:flex;align-items:center;justify-content:center;padding:2rem 2rem 4rem;width:100%;max-width:600px;margin:0 auto;position:relative;z-index:2; }
 .dm-text-col { flex:1;min-width:0;max-width:400px;display:flex;flex-direction:column;gap:1.6rem; }
 
 /* Brand */
