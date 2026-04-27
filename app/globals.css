@@ -69,7 +69,6 @@ body {
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: screen;
-  transition: transform 0.15s ease;
 }
 
 .cursor-ring {
@@ -467,6 +466,15 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+@media (max-width: 1050px) {
+  .nav-links {
+    gap: 1.25rem;
+  }
+  .nav-links a {
+    font-size: 11px !important;
+  }
 }
 
 .nav-hamburger {
