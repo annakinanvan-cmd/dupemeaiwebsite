@@ -24,7 +24,7 @@ export default function ContactModal() {
     const btn = document.querySelector('button[type="submit"]') as HTMLButtonElement;
     if (btn) btn.innerText = "Sending...";
     try {
-      await fetch("https://formcarry.com/s/0zENX_GD5mR", {
+      await fetch("https://formsubmit.co/ajax/dupemeai@gmail.com", {
         method: "POST",
         headers: {
           "Accept": "application/json",

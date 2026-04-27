@@ -39,8 +39,8 @@ export default function Navbar() {
 
   const navLinks = [
     { label: "How it works", href: "/#demo" },
-    { label: "Why DupeMe", href: "/#comparison" },
     { label: "Platforms", href: "/#platforms" },
+    { label: "Why DupeMe", href: "/#why-dupeme" },
     { label: "Pricing", href: "/#pricing" },
     { label: "Agencies", href: "/agencies" },
     { label: "About", href: "/about" },

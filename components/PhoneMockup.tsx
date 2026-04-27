@@ -505,10 +505,13 @@ export default function PhoneMockup() {
         <span style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#C084FC", marginBottom: "1.25rem", display: "block" }}>
           How it works
         </span>
-        <h2 className="font-serif" style={{ fontSize: "clamp(22px,3.5vw,38px)", fontWeight: 400, lineHeight: 1.1, marginBottom: 0 }}>
+        <h2 className="font-serif" style={{ fontSize: "clamp(22px,3.5vw,38px)", fontWeight: 400, lineHeight: 1.1, marginBottom: "1.25rem" }}>
           Watch her work.<br />
           <em className="text-gradient font-serif" style={{ fontStyle: "italic" }}>While you sleep.</em>
         </h2>
+        <p style={{ fontSize: 13, color: "rgba(255,255,255,.5)", margin: "0 auto", maxWidth: 400, lineHeight: 1.6 }}>
+          Save up to <span style={{ color: "#C084FC", fontWeight: 600 }}>$33,600/yr</span> from a booker. Up to <span style={{ color: "#C084FC", fontWeight: 600 }}>$4,600/yr</span> from a tool stack.
+        </p>
       </div>
 
       {/* ── Dot grid background ── */}

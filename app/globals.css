@@ -24,7 +24,7 @@ button {
 :root {
   --blush: #c084fc;
   --blush-light: #f472b6;
-  --deep: #0d0b14;
+  --deep: #080412;
   --mid: rgba(192, 132, 252, 0.05);
 }
 
@@ -564,25 +564,25 @@ body {
 }
 
 .section-pad {
-  padding: 5rem 3rem;
+  padding: 4rem 2rem;
   scroll-margin-top: 80px;
 }
 
 /* All anchor targets get scroll offset for fixed navbar */
-#how-it-works, #how, #comparison, #platforms, #pricing, #faq, #about, #solution {
+#how-it-works, #how, #comparison, #platforms, #pricing, #faq, #about, #solution, #demo, #why-dupeme {
   scroll-margin-top: 80px;
 }
 
 .accordion-section-pad {
-  padding: 3rem 3rem;
+  padding: 2.5rem 2rem;
 }
 
 @media (max-width: 768px) {
   .section-pad {
-    padding: 60px 1.5rem;
+    padding: 40px 1.5rem;
   }
   .accordion-section-pad {
-    padding: 1.5rem 1.5rem;
+    padding: 1rem 1.5rem;
   }
   #pricing {
     padding-bottom: 20px;
@@ -671,7 +671,7 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .problem-grid {
     grid-template-columns: 1fr;
   }
@@ -760,6 +760,10 @@ body {
   gap: 1rem;
 }
 
+.platform-card {
+  padding: 1.25rem 0.875rem;
+}
+
 .agencies-tools-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -774,8 +778,11 @@ body {
 
 @media (max-width: 600px) {
   .platforms-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.65rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .platform-card {
+    padding: 0.75rem 0.5rem;
   }
   .agencies-tools-grid {
     grid-template-columns: 1fr !important;

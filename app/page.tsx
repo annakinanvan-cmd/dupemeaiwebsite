@@ -8,7 +8,6 @@ import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
 import PhoneMockup from "@/components/PhoneMockup";
 import Platforms from "@/components/Platforms";
-import Comparison from "@/components/Comparison";
 import PrivacyArchitecture from "@/components/PrivacyArchitecture";
 import Pricing from "@/components/Pricing";
 import SocialProof from "@/components/SocialProof";
@@ -44,7 +43,6 @@ export default function Home() {
         <PhoneMockup />
         <SocialProof />
         <Platforms />
-        <Comparison />
         <PrivacyArchitecture />
         <Pricing />
         <FAQ />

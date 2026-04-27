@@ -42,6 +42,10 @@ const faqs = [
     q: "I'm LGBTQIA+ — is DupeMe for me?",
     a: "Absolutely. Every provider, every creator, every identity. This was a priority from day one — not an afterthought. You belong here, fully and without question.",
   },
+  {
+    q: "🌶️ What if my conversations with clients get explicit?",
+    a: "Not a problem. Unlike mainstream AI tools that block adult content, DupeMe is built for this industry — no filters, no restrictions. Your AI is trained to handle explicit conversations, discuss your services in full, and even engage in dirty talk with clients. All in your voice, exactly how you'd say it.",
+  },
 ];
 
 export default function FAQ() {
@@ -49,15 +53,15 @@ export default function FAQ() {
   const [isMainOpen, setIsMainOpen] = useState(false);
 
   return (
-    <section id="faq" className="accordion-section-pad" style={{ background: "transparent", color: "#fff", position: "relative", zIndex: 2 }}>
+    <section id="faq" className="accordion-section-pad" style={{ paddingTop: "2rem", background: "transparent", color: "#fff", position: "relative", zIndex: 2 }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         
         {/* Main Collapse Wrapper */}
         <div 
           className="reveal"
           style={{
-            background: "#110e1a",
-            border: "1px solid #1e1530",
+            background: "#080412",
+            border: "1px solid rgba(192,132,252,0.15)",
             borderRadius: 16,
             overflow: "hidden",
             transition: "all 0.3s ease"
@@ -83,10 +87,7 @@ export default function FAQ() {
             }}
           >
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-              <span style={{ fontSize: 10, letterSpacing: ".22em", textTransform: "uppercase", color: "#C084FC" }}>
-                Everything you need to know
-              </span>
-              <h2 className="font-serif" style={{ fontSize: "clamp(22px,3.5vw,32px)", fontWeight: 400, margin: 0 }}>
+              <h2 className="font-serif" style={{ fontSize: "clamp(26px, 4.5vw, 38px)", fontWeight: 700, margin: 0, letterSpacing: "-0.01em" }}>
                 Frequently Asked Questions
               </h2>
             </div>
@@ -95,13 +96,15 @@ export default function FAQ() {
               display: "flex", 
               alignItems: "center", 
               justifyContent: "center",
-              width: 36,
-              height: 36,
+              width: "36px",
+              height: "36px",
               borderRadius: "50%",
-              background: "rgba(192,132,252,.08)",
-              flexShrink: 0
+              background: isMainOpen ? "rgba(192,132,252,0.1)" : "rgba(255,255,255,0.03)",
+              border: isMainOpen ? "1px solid rgba(192,132,252,0.2)" : "1px solid rgba(255,255,255,0.1)",
+              flexShrink: 0,
+              transition: "all 0.3s ease"
             }}>
-              <span style={{ fontSize: 24, color: "#C084FC", fontWeight: 300, transition: "transform .4s cubic-bezier(0.4, 0, 0.2, 1)", transform: isMainOpen ? "rotate(180deg)" : "rotate(0)" }}>
+              <span style={{ fontSize: "22px", color: isMainOpen ? "#C084FC" : "rgba(255,255,255,.6)", fontWeight: 300, transition: "transform .4s cubic-bezier(0.4, 0, 0.2, 1)", transform: isMainOpen ? "rotate(180deg)" : "rotate(0)" }}>
                 {isMainOpen ? "−" : "+"}
               </span>
             </div>
@@ -114,7 +117,7 @@ export default function FAQ() {
               opacity: isMainOpen ? 1 : 0,
               transition: "max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, padding 0.5s ease",
               padding: isMainOpen ? "12px 28px 28px 28px" : "0 28px",
-              borderTop: isMainOpen ? "1px solid #1e1530" : "1px solid transparent"
+              borderTop: isMainOpen ? "1px solid rgba(192,132,252,0.15)" : "1px solid transparent"
             }}
           >
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -125,7 +128,7 @@ export default function FAQ() {
                     key={i}
                     style={{
                       background: "rgba(255,255,255,.02)",
-                      border: "1px solid #1e1530",
+                      border: "1px solid rgba(192,132,252,0.15)",
                       borderRadius: 12,
                       overflow: "hidden",
                       transition: "background .2s",
@@ -148,9 +151,24 @@ export default function FAQ() {
                       }}
                     >
                       <span style={{ fontSize: 15, fontWeight: 500, paddingRight: 16 }}>{faq.q}</span>
-                      <span style={{ fontSize: 20, color: "#C084FC", fontWeight: 300, flexShrink: 0, transition: "transform .3s", transform: isOpen ? "rotate(180deg)" : "rotate(0)" }}>
-                        {isOpen ? "−" : "+"}
-                      </span>
+                      <span style={{ 
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "32px",
+                    height: "32px",
+                    borderRadius: "50%",
+                    background: isOpen ? "rgba(244,114,182,0.1)" : "rgba(255,255,255,0.03)",
+                    border: isOpen ? "1px solid rgba(244,114,182,0.2)" : "1px solid rgba(255,255,255,0.1)",
+                    fontSize: "20px", 
+                    color: isOpen ? "#f472b6" : "rgba(255,255,255,.6)",
+                    transition: "all 0.3s ease",
+                    fontWeight: 300,
+                    lineHeight: 1,
+                    flexShrink: 0
+                  }}>
+                    {isOpen ? "−" : "+"}
+                  </span>
                     </button>
                     <div
                       style={{

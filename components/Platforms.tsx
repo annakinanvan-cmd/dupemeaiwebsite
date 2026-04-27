@@ -42,13 +42,13 @@ export default function Platforms() {
         {platforms.map((p) => (
           <div
             key={p.name}
+            className="platform-card"
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               textAlign: "center",
               gap: ".5rem",
-              padding: "1.25rem .875rem",
               background: p.bg,
               border: `.5px solid ${p.border}`,
               borderRadius: 14,
