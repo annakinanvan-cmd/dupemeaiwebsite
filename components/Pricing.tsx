@@ -1,89 +1,5 @@
 "use client";
-import { useState } from "react";
-
-const addons = [
-  {
-    title: "Financial Planner",
-    desc: "Tracks your income per platform, highlights slow months, estimates taxes, and helps you set earning goals — built around your actual booking volume.",
-  },
-  {
-    title: "VIP Client CRM",
-    desc: "Remembers birthdays, anniversaries, preferences, and past bookings for your top clients. DupeMe sends the right message at exactly the right moment.",
-  },
-  {
-    title: "Upsell Sequences",
-    desc: "Automated follow-up messages written in your voice — designed to convert one-time clients to regulars, and regulars to premium spend.",
-  },
-  {
-    title: "Analytics & Monthly Reports",
-    desc: "Which platforms performed, response rates, booking conversion, and busiest times — delivered as a clean summary every month.",
-  },
-  {
-    title: "Waitlist Manager",
-    desc: "When you're fully booked, DupeMe manages a waitlist and automatically notifies clients the moment a slot opens.",
-  },
-  {
-    title: "Fitness & Diet Tracker",
-    desc: "Track your workouts, meals, and wellness goals in one place. Your personal assistant logs your progress and keeps you on schedule — because taking care of yourself is part of the job.",
-  },
-];
-
-function AddonAccordion() {
-  const [open, setOpen] = useState<number | null>(null);
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-      {addons.map((a, i) => (
-        <div
-          key={i}
-          style={{
-            borderBottom: i < addons.length - 1 ? ".5px solid rgba(192,132,252,.12)" : "none",
-          }}
-        >
-          <button
-            onClick={() => setOpen(open === i ? null : i)}
-            style={{
-              width: "100%",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "12px 0",
-              color: open === i ? "#c084fc" : "rgba(255,255,255,.75)",
-              fontSize: 13,
-              fontWeight: 500,
-              textAlign: "left",
-              transition: "color .2s",
-            }}
-          >
-            {a.title}
-            <span style={{
-              fontSize: 16,
-              color: "rgba(192,132,252,.6)",
-              transform: open === i ? "rotate(45deg)" : "rotate(0)",
-              transition: "transform .2s",
-              lineHeight: 1,
-              flexShrink: 0,
-              marginLeft: 8,
-            }}>+</span>
-          </button>
-          {open === i && (
-            <p style={{
-              fontSize: 12,
-              color: "rgba(255,255,255,.65)",
-              lineHeight: 1.7,
-              paddingBottom: 12,
-              margin: 0,
-            }}>
-              {a.desc}
-            </p>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
+import React from "react";
 
 export default function Pricing() {
   return (
@@ -91,179 +7,192 @@ export default function Pricing() {
       id="pricing"
       className="section-pad"
       style={{
+        backgroundColor: "#080412",
         borderBottom: ".5px solid rgba(192,132,252,.15)",
         position: "relative",
         zIndex: 2,
+        color: "#ffffff"
       }}
     >
-      <span
-        className="reveal"
-        style={{
-          fontSize: 10,
-          letterSpacing: ".22em",
-          textTransform: "uppercase",
-          color: "#C084FC",
-          marginBottom: "1.25rem",
-          display: "block",
-        }}
-      >
-        Pricing
-      </span>
-      <h2
-        className="font-serif reveal reveal-delay-1"
-        style={{ fontSize: "clamp(26px,3.5vw,38px)", fontWeight: 400, marginBottom: ".75rem" }}
-      >
-        Simple. Transparent. No surprises.
-      </h2>
-      <p
-        className="reveal reveal-delay-2"
-        style={{ fontSize: 14, color: "rgba(255,255,255,.65)", marginBottom: "3rem", maxWidth: 500, lineHeight: 1.8 }}
-      >
-        A single, one-time setup fee. Then you only pay for what the AI actually uses. No subscriptions. No commission. Ever.
-      </p>
-
-      {/* 3 Pricing Cards */}
-      <div className="pricing-grid reveal reveal-delay-3" style={{ marginBottom: "4rem" }}>
+      <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "0 20px" }}>
         
-        {/* Card 1 */}
-        <div className="card-hover" style={{ padding: "2.5rem 2rem" }}>
-          <h3 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: ".06em", color: "rgba(255,255,255,.65)", marginBottom: "1rem" }}>
-            Getting Started
-          </h3>
-          <p className="font-serif" style={{ fontSize: 42, color: "#fff", lineHeight: 1, marginBottom: ".25rem" }}>
-            $2,500
+        {/* Header */}
+        <div className="reveal" style={{ textAlign: "center", marginBottom: "3rem" }}>
+          <h2
+            className="font-serif"
+            style={{ fontSize: "clamp(28px,4vw,42px)", fontWeight: 400, marginBottom: "1rem" }}
+          >
+            Simple. Transparent. Built around you.
+          </h2>
+          <p
+            style={{ fontSize: "16px", color: "rgba(255,255,255,.65)", margin: "0 auto", maxWidth: "600px", lineHeight: 1.6 }}
+          >
+            Every build starts at $2,500. What's inside depends on your world.
           </p>
-          <p style={{ fontSize: 13, color: "#C084FC", marginBottom: "1.5rem" }}>
-            one-time setup fee · no recurring contracts
-          </p>
-          <p style={{ fontSize: 14, color: "rgba(255,255,255,.72)", lineHeight: 1.6, marginBottom: "1.75rem" }}>
-            We build your entire AI assistant from scratch — trained on your voice, connected to every platform, and configured to your exact rules. One payment. Yours forever.
-          </p>
-          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, marginBottom: "2rem" }}>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.85)", display: "flex", gap: "8px" }}>
-              <span style={{ color: "#c084fc", flexShrink: 0 }}>✓</span>
-              Full onboarding call — we get to know your voice, rules, and how you work
-            </li>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.85)", display: "flex", gap: "8px" }}>
-              <span style={{ color: "#c084fc", flexShrink: 0 }}>✓</span>
-              Voice & tone training — your AI sounds exactly like you
-            </li>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.85)", display: "flex", gap: "8px" }}>
-              <span style={{ color: "#c084fc", flexShrink: 0 }}>✓</span>
-              All platforms connected — WhatsApp, Telegram, Instagram, email & more
-            </li>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.85)", display: "flex", gap: "8px" }}>
-              <span style={{ color: "#c084fc", flexShrink: 0 }}>✓</span>
-              Screening rules configured — time-wasters filtered automatically
-            </li>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.85)", display: "flex", gap: "8px" }}>
-              <span style={{ color: "#c084fc", flexShrink: 0 }}>✓</span>
-              Content scheduling across all platforms
-            </li>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.85)", display: "flex", gap: "8px" }}>
-              <span style={{ color: "#c084fc", flexShrink: 0 }}>✓</span>
-              Personal Assistant chat — your direct line to DupeMe. Give instructions, check in, stay in control.
-            </li>
-          </ul>
+        </div>
 
-          {/* Free Website — Limited Time Offer */}
+        {/* Base Card */}
+        <div className="reveal reveal-delay-1" style={{
+          background: "rgba(255,255,255,0.02)",
+          backdropFilter: "blur(10px)",
+          borderRadius: "20px",
+          padding: "3rem 2rem",
+          textAlign: "center",
+          marginBottom: "3rem",
+          position: "relative",
+        }}>
+          {/* subtle purple/pink gradient border */}
           <div style={{
-            background: "linear-gradient(135deg, rgba(192,132,252,.12), rgba(244,114,182,.08))",
-            border: "1px solid rgba(192,132,252,.4)",
-            borderRadius: 10,
-            padding: "1.25rem",
+            position: "absolute",
+            inset: 0,
+            borderRadius: "20px",
+            padding: "1px",
+            background: "linear-gradient(135deg, rgba(192,132,252,0.5), rgba(244,114,182,0.5))",
+            WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            maskComposite: "exclude",
+            pointerEvents: "none",
+          }}></div>
+          
+          <h3 className="font-serif" style={{ fontSize: "clamp(40px, 6vw, 56px)", fontWeight: "bold", margin: 0, lineHeight: 1 }}>$2,500</h3>
+          <p style={{ fontSize: "14px", color: "rgba(255,255,255,.6)", marginTop: "0.5rem", marginBottom: "1.5rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+            one-time setup fee
+          </p>
+          <p style={{ fontSize: "16px", color: "rgba(255,255,255,.8)", maxWidth: "800px", margin: "0 auto", lineHeight: 1.6 }}>
+            "Your AI, trained on your voice, connected to your platforms, configured to your rules. One payment. Yours forever. Includes your own branded website — professionally designed and live on day one."
+          </p>
+        </div>
+
+        {/* Two Columns */}
+        <div className="reveal reveal-delay-2" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", marginBottom: "3rem" }}>
+          
+          {/* Left Column - ESCORTS */}
+          <div style={{
+            background: "rgba(244,114,182,0.03)",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(244,114,182,0.3)",
+            boxShadow: "0 0 30px rgba(244,114,182,0.1)",
+            borderRadius: "20px",
+            padding: "2.5rem 2rem",
             position: "relative",
-            overflow: "hidden",
-          }}>
-            <div style={{
-              position: "absolute",
-              top: "-1px",
-              right: "-1px",
-              background: "linear-gradient(135deg, #f472b6, #c084fc)",
-              color: "#000",
-              fontSize: 9,
-              fontWeight: 700,
-              letterSpacing: ".08em",
-              textTransform: "uppercase",
-              padding: "4px 12px",
-              borderRadius: "0 10px 0 8px",
-            }}>
-              ⚡ Limited Time
-            </div>
-            <p style={{ fontSize: 11, color: "#c084fc", letterSpacing: ".1em", textTransform: "uppercase", marginBottom: ".4rem", fontWeight: 600 }}>
-              Free Bonus Included
-            </p>
-            <p style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: ".4rem" }}>
-              Your own branded website — live on day one
-            </p>
-            <p style={{ fontSize: 12, color: "rgba(255,255,255,.65)", lineHeight: 1.6 }}>
-              Your photos, rates, and booking link — professionally designed and ready to share the moment we go live. Normally a separate cost. Included free for early clients.
-            </p>
+            transition: "transform 0.3s ease",
+          }} className="card-hover">
+            <h4 style={{ color: "#F472B6", fontSize: "15px", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "1.5rem", fontWeight: "600" }}>ESCORTS</h4>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+              {[
+                "Screening & vetting workflows",
+                "Booking & deposit automation",
+                "Email / WhatsApp / Telegram / iMessage",
+                "Calendar sync",
+                "VIP client CRM — memory, upkeep & flirting",
+                "X & Instagram posting"
+              ].map((item, i) => (
+                <li key={i} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "10px", fontSize: "14px", color: "rgba(255,255,255,.85)" }}>
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <span style={{ color: "#F472B6", flexShrink: 0, fontWeight: "bold" }}>✓</span>
+                    <span style={{ lineHeight: 1.4 }}>{item}</span>
+                  </div>
+                  <span style={{
+                    fontSize: "10px",
+                    background: "rgba(192,132,252,0.08)",
+                    padding: "4px 8px",
+                    borderRadius: "10px",
+                    color: "rgba(192,132,252,0.7)",
+                    whiteSpace: "nowrap",
+                    alignSelf: "flex-start",
+                    marginTop: "2px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.02em"
+                  }}>custom pricing</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right Column - CREATORS */}
+          <div style={{
+            background: "rgba(192,132,252,0.03)",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(192,132,252,0.3)",
+            boxShadow: "0 0 30px rgba(192,132,252,0.1)",
+            borderRadius: "20px",
+            padding: "2.5rem 2rem",
+            position: "relative",
+            transition: "transform 0.3s ease",
+          }} className="card-hover">
+            <h4 style={{ color: "#C084FC", fontSize: "15px", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "1.5rem", fontWeight: "600" }}>CREATORS</h4>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+              {[
+                "Instagram / X automation",
+                "Upsell sequences on socials — in your voice",
+                "Content scheduling & posting",
+                "Fan CRM & subscriber memory",
+                "Waitlist manager"
+              ].map((item, i) => (
+                <li key={i} style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "10px", fontSize: "14px", color: "rgba(255,255,255,.85)" }}>
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <span style={{ color: "#C084FC", flexShrink: 0, fontWeight: "bold" }}>✓</span>
+                    <span style={{ lineHeight: 1.4 }}>{item}</span>
+                  </div>
+                  <span style={{
+                    fontSize: "10px",
+                    background: "rgba(192,132,252,0.08)",
+                    padding: "4px 8px",
+                    borderRadius: "10px",
+                    color: "rgba(192,132,252,0.7)",
+                    whiteSpace: "nowrap",
+                    alignSelf: "flex-start",
+                    marginTop: "2px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.02em"
+                  }}>custom pricing</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
+        {/* Do both? callout */}
+        <div className="reveal reveal-delay-3" style={{ textAlign: "center", marginBottom: "3rem" }}>
+          <p style={{ fontSize: "16px", color: "rgba(255,255,255,.7)", fontStyle: "italic", fontWeight: 300, maxWidth: "600px", margin: "0 auto", lineHeight: 1.6 }}>
+            "Escort by night, creator by day? We build for both. Get in touch and we'll scope it out together."
+          </p>
+        </div>
 
-        {/* Card 2 - Focal */}
-        <div className="pricing-focal" style={{ 
-          padding: "3rem 2rem", 
-          background: "rgba(192,132,252,0.06)", 
-          border: "1px solid rgba(192,132,252,0.5)", 
-          boxShadow: "0 0 30px rgba(192,132,252,0.2)",
-          position: "relative",
-          zIndex: 5,
-          transition: "transform 0.3s ease, box-shadow 0.3s ease"
+        {/* Monthly Cost Strip */}
+        <div className="reveal reveal-delay-4" style={{
+          textAlign: "center",
+          padding: "2.5rem 2rem",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04))",
+          borderRadius: "20px",
+          border: "1px solid rgba(255,255,255,0.08)",
+          marginBottom: "3rem"
         }}>
-          <div style={{ display: "inline-block", padding: "4px 12px", background: "#C084FC", color: "#000", fontSize: 11, fontWeight: 600, letterSpacing: ".04em", borderRadius: 100, marginBottom: "1.5rem" }}>
-            Pay only for what you use
-          </div>
-          <h3 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: ".06em", color: "rgba(255,255,255,.8)", marginBottom: "1rem" }}>
-            Monthly Running Cost
+          <h3 className="font-serif" style={{ fontSize: "clamp(32px, 5vw, 42px)", fontWeight: "bold", margin: "0 0 0.5rem 0", color: "#fff", lineHeight: 1 }}>
+            ~$40–$100<span style={{ fontSize: "clamp(18px, 3vw, 24px)", color: "rgba(255,255,255,.5)", fontWeight: "normal" }}>/mo</span>
           </h3>
-          <p className="font-serif" style={{ fontSize: 42, color: "#fff", lineHeight: 1, marginBottom: ".25rem" }}>
-            ~$40<span style={{ fontSize: 24, color: "rgba(255,255,255,.72)" }}>/mo</span>
+          <p style={{ fontSize: "15px", color: "rgba(255,255,255,.7)", marginBottom: "1.5rem", maxWidth: "600px", margin: "0 auto 1.5rem auto", lineHeight: 1.6 }}>
+            after setup — you only pay for actual AI usage. No subscriptions. No commission. Ever.
           </p>
-          <p style={{ fontSize: 13, color: "#C084FC", marginBottom: "1.5rem" }}>
-            max based on your usage
-          </p>
-          <p style={{ fontSize: 14, color: "rgba(255,255,255,.72)", lineHeight: 1.6, marginBottom: "1.5rem" }}>
-            After setup, you only pay for actual AI usage — nothing else.
-          </p>
-          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 12, marginBottom: "2rem" }}>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.8)", display: "flex", gap: "8px" }}><span style={{color: "#C084FC"}}>✓</span> No flat subscription</li>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.8)", display: "flex", gap: "8px" }}><span style={{color: "#C084FC"}}>✓</span> No commission on bookings</li>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.8)", display: "flex", gap: "8px" }}><span style={{color: "#C084FC"}}>✓</span> Transparent usage billing</li>
-            <li style={{ fontSize: 13, color: "rgba(255,255,255,.8)", display: "flex", gap: "8px" }}><span style={{color: "#C084FC"}}>✓</span> Cancel anytime</li>
-          </ul>
-          <button 
-            className="btn-primary" 
-            style={{ width: "100%", justifyContent: "center" }}
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1.5rem", fontSize: "14px", color: "rgba(255,255,255,.8)" }}>
+            <span style={{ display: "flex", alignItems: "center", gap: "8px" }}><span style={{ color: "#C084FC" }}>✓</span> No flat subscription</span>
+            <span style={{ display: "flex", alignItems: "center", gap: "8px" }}><span style={{ color: "#C084FC" }}>✓</span> No commission on bookings</span>
+            <span style={{ display: "flex", alignItems: "center", gap: "8px" }}><span style={{ color: "#C084FC" }}>✓</span> Cancel anytime</span>
+          </div>
+        </div>
+
+        {/* CTA Button */}
+        <div className="reveal reveal-delay-5" style={{ textAlign: "center", paddingBottom: "2rem" }}>
+          <button
+            className="btn-primary"
+            style={{ width: "100%", maxWidth: "300px", justifyContent: "center", padding: "1.25rem 2rem", fontSize: "16px" }}
             onClick={() => window.dispatchEvent(new CustomEvent('openContactModal'))}
           >
             Get in touch
           </button>
         </div>
 
-        {/* Card 3 */}
-        <div className="card-hover" style={{ padding: "2.5rem 2rem" }}>
-          <h3 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: ".06em", color: "rgba(255,255,255,.65)", marginBottom: "1rem" }}>
-            Add-Ons
-          </h3>
-          <p className="font-serif" style={{ fontSize: 42, color: "#fff", lineHeight: 1, marginBottom: ".25rem" }}>
-            Custom
-          </p>
-          <p style={{ fontSize: 13, color: "#C084FC", marginBottom: "1rem" }}>
-            priced per your needs
-          </p>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,.65)", lineHeight: 1.6, marginBottom: "1.5rem" }}>
-            Expand what your AI can do. Tell us what you need on the call — we build and manage everything for you.
-          </p>
-          <AddonAccordion />
-        </div>
       </div>
-
-
-
     </section>
   );
 }
-
