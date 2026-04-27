@@ -132,7 +132,7 @@ export default function SocialProof() {
                   key={i}
                   style={{
                     background: "rgba(255,255,255,.02)",
-                    border: "1px solid #1e1530",
+                    border: "1px solid rgba(192,132,252,0.15)",
                     borderRadius: 16,
                     padding: "24px",
                     display: "flex",

@@ -56,7 +56,7 @@ export default function FAQ() {
     <section
       id="faq"
       style={{
-        padding: "3rem 2rem",
+        padding: "1.5rem 2rem 2rem",
         background: "transparent",
         color: "#fff",
         position: "relative",

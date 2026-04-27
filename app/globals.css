@@ -39,6 +39,10 @@ html {
   scroll-behavior: smooth;
 }
 
+a, button {
+  cursor: pointer;
+}
+
 body {
   background: var(--deep);
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
@@ -552,6 +556,7 @@ body {
 }
 
 @media (max-width: 768px) {
+  a, button { cursor: pointer; }
   .nav-wrapper {
     padding: 1rem 1.5rem;
   }
@@ -865,7 +870,7 @@ body {
 
 /* --- CTA section --- */
 .cta-section {
-  padding: 7rem 3rem;
+  padding: 4.5rem 3rem;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -875,7 +880,7 @@ body {
 
 @media (max-width: 768px) {
   .cta-section {
-    padding: 60px 1.5rem;
+    padding: 40px 1.5rem;
   }
   /* Prevent the CTA h2 from dominating the full screen */
   .cta-section h2 {
