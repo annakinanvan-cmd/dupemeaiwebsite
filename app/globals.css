@@ -35,7 +35,8 @@ button {
 }
 
 html {
-  scroll-padding-top: 90px;
+  scroll-padding-top: 100px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -463,6 +464,9 @@ body {
 .nav-links {
   display: flex;
   gap: 2.5rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav-hamburger {
@@ -565,12 +569,10 @@ body {
 
 .section-pad {
   padding: 4rem 2rem;
-  scroll-margin-top: 80px;
 }
 
 /* All anchor targets get scroll offset for fixed navbar */
 #how-it-works, #how, #comparison, #platforms, #pricing, #faq, #about, #solution, #demo, #why-dupeme {
-  scroll-margin-top: 80px;
 }
 
 .accordion-section-pad {
