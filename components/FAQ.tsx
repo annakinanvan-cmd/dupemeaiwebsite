@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const faqs = [
   {
@@ -50,143 +50,147 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [isMainOpen, setIsMainOpen] = useState(false);
 
   return (
-    <section id="faq" className="accordion-section-pad" style={{ paddingTop: "2rem", background: "transparent", color: "#fff", position: "relative", zIndex: 2 }}>
-      <div style={{ maxWidth: 800, margin: "0 auto" }}>
-        
-        {/* Main Collapse Wrapper */}
-        <div 
-          className="reveal"
-          style={{
-            background: "#080412",
-            border: "1px solid rgba(192,132,252,0.15)",
-            borderRadius: 16,
-            overflow: "hidden",
-            transition: "all 0.3s ease"
-          }}
-        >
-          {/* Main Header Toggle */}
-          <button
-            onClick={() => setIsMainOpen(!isMainOpen)}
-            className="accordion-header"
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "24px 28px",
-              background: isMainOpen ? "rgba(192,132,252,.04)" : "transparent",
-              border: "none",
-              color: "#fff",
-              cursor: "pointer",
-              textAlign: "left",
-              minHeight: 80,
-              transition: "background .3s ease"
-            }}
-          >
-            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-              <h2 className="font-serif" style={{ fontSize: "clamp(26px, 4.5vw, 38px)", fontWeight: 700, margin: 0, letterSpacing: "-0.01em" }}>
-                Frequently Asked Questions
-              </h2>
-            </div>
-            
-            <div style={{ 
-              display: "flex", 
-              alignItems: "center", 
-              justifyContent: "center",
-              width: "36px",
-              height: "36px",
-              borderRadius: "50%",
-              background: isMainOpen ? "rgba(192,132,252,0.1)" : "rgba(255,255,255,0.03)",
-              border: isMainOpen ? "1px solid rgba(192,132,252,0.2)" : "1px solid rgba(255,255,255,0.1)",
-              flexShrink: 0,
-              transition: "all 0.3s ease"
-            }}>
-              <span style={{ fontSize: "22px", color: isMainOpen ? "#C084FC" : "rgba(255,255,255,.6)", fontWeight: 300, transition: "transform .4s cubic-bezier(0.4, 0, 0.2, 1)", transform: isMainOpen ? "rotate(180deg)" : "rotate(0)" }}>
-                {isMainOpen ? "−" : "+"}
-              </span>
-            </div>
-          </button>
+    <section
+      id="faq"
+      style={{
+        padding: "4rem 2rem",
+        background: "transparent",
+        color: "#fff",
+        position: "relative",
+        zIndex: 2,
+      }}
+    >
+      <style dangerouslySetInnerHTML={{__html: `
+        .faq-item {
+          border-bottom: 1px solid rgba(192,132,252,0.12);
+          transition: border-color 0.3s ease;
+        }
+        .faq-item:first-child {
+          border-top: 1px solid rgba(192,132,252,0.12);
+        }
+        .faq-item.open {
+          border-color: rgba(192,132,252,0.25);
+        }
+        .faq-btn {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1.5rem;
+          padding: 1.4rem 0;
+          background: transparent;
+          border: none;
+          color: #fff;
+          cursor: pointer;
+          text-align: left;
+        }
+        .faq-btn:hover .faq-q {
+          color: #C084FC;
+        }
+        .faq-q {
+          font-size: clamp(14px, 2vw, 16px);
+          font-weight: 500;
+          line-height: 1.4;
+          transition: color 0.25s ease;
+          font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+        }
+        .faq-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          border: 1px solid rgba(192,132,252,0.25);
+          background: rgba(192,132,252,0.04);
+          color: #C084FC;
+          font-size: 18px;
+          font-weight: 300;
+          flex-shrink: 0;
+          transition: all 0.3s ease;
+          line-height: 1;
+        }
+        .faq-icon.open {
+          background: rgba(244,114,182,0.1);
+          border-color: rgba(244,114,182,0.3);
+          color: #F472B6;
+          transform: rotate(45deg);
+        }
+        .faq-body {
+          overflow: hidden;
+          transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease;
+        }
+        .faq-body-inner {
+          padding-bottom: 1.25rem;
+          font-size: 14px;
+          color: rgba(255,255,255,0.58);
+          line-height: 1.75;
+          max-width: 680px;
+        }
+      `}} />
 
-          {/* Children List */}
-          <div
+      <div style={{ maxWidth: 760, margin: "0 auto" }}>
+
+        {/* Section Header */}
+        <div className="reveal" style={{ marginBottom: "2.5rem" }}>
+          <span style={{
+            fontSize: 10,
+            letterSpacing: ".22em",
+            textTransform: "uppercase",
+            color: "#C084FC",
+            marginBottom: "0.75rem",
+            display: "block",
+          }}>
+            FAQ
+          </span>
+          <h2
+            className="font-serif"
             style={{
-              maxHeight: isMainOpen ? 4000 : 0, /* Large enough to fit 10 questions */
-              opacity: isMainOpen ? 1 : 0,
-              transition: "max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, padding 0.5s ease",
-              padding: isMainOpen ? "12px 28px 28px 28px" : "0 28px",
-              borderTop: isMainOpen ? "1px solid rgba(192,132,252,0.15)" : "1px solid transparent"
+              fontSize: "clamp(30px, 5vw, 46px)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              color: "#fff",
+              letterSpacing: "-0.02em",
+              margin: 0,
             }}
           >
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {faqs.map((faq, i) => {
-                const isOpen = openIndex === i;
-                return (
-                  <div
-                    key={i}
-                    style={{
-                      background: "rgba(255,255,255,.02)",
-                      border: "1px solid rgba(192,132,252,0.15)",
-                      borderRadius: 12,
-                      overflow: "hidden",
-                      transition: "background .2s",
-                    }}
-                  >
-                    <button
-                      onClick={() => setOpenIndex(isOpen ? null : i)}
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        padding: "18px 22px",
-                        background: "transparent",
-                        border: "none",
-                        color: "#fff",
-                        cursor: "pointer",
-                        textAlign: "left",
-                        minHeight: 52,
-                      }}
-                    >
-                      <span style={{ fontSize: 15, fontWeight: 500, paddingRight: 16 }}>{faq.q}</span>
-                      <span style={{ 
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "50%",
-                    background: isOpen ? "rgba(244,114,182,0.1)" : "rgba(255,255,255,0.03)",
-                    border: isOpen ? "1px solid rgba(244,114,182,0.2)" : "1px solid rgba(255,255,255,0.1)",
-                    fontSize: "20px", 
-                    color: isOpen ? "#f472b6" : "rgba(255,255,255,.6)",
-                    transition: "all 0.3s ease",
-                    fontWeight: 300,
-                    lineHeight: 1,
-                    flexShrink: 0
-                  }}>
-                    {isOpen ? "−" : "+"}
+            Everything you need<br />
+            <em className="text-gradient font-serif" style={{ fontStyle: "italic" }}>
+              to know.
+            </em>
+          </h2>
+        </div>
+
+        {/* FAQ Items */}
+        <div className="reveal reveal-delay-1">
+          {faqs.map((faq, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div key={i} className={`faq-item${isOpen ? " open" : ""}`}>
+                <button
+                  className="faq-btn"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                >
+                  <span className="faq-q">{faq.q}</span>
+                  <span className={`faq-icon${isOpen ? " open" : ""}`}>
+                    +
                   </span>
-                    </button>
-                    <div
-                      style={{
-                        maxHeight: isOpen ? 500 : 0,
-                        opacity: isOpen ? 1 : 0,
-                        transition: "max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease",
-                        padding: isOpen ? "0 22px 20px 22px" : "0 22px",
-                      }}
-                    >
-                      <p style={{ fontSize: 14, color: "rgba(255,255,255,.65)", lineHeight: 1.7, margin: 0 }}>
-                        {faq.a}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+                </button>
+                <div
+                  className="faq-body"
+                  style={{
+                    maxHeight: isOpen ? 400 : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                >
+                  <p className="faq-body-inner">{faq.a}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
